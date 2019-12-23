@@ -1,8 +1,9 @@
 import numpy as np
+import matplotlib.pyplot as plt
 
-def city_block(arr):
+def city_block(lis):
 
-    matrix = np.array(arr)
+    matrix = np.array(lis)
 
     # simpan index pixel fore-ground atau pixel yang valunya non-zero kedalam saveindex
     saveindex = []
@@ -12,7 +13,7 @@ def city_block(arr):
                 saveindex.append((i,j))
 
     # buat matrik hasil yang berisi 0 di setiap elementnya
-    hasil = np.zeros((len(arr),len(arr[0])))
+    hasil = np.zeros((len(lis),len(lis[0])))
     # loop untuk setiap pixel(termasuk pixel fore-ground)
     for i1 in range(len(hasil)):
         for j1 in range(len(hasil[0])):
@@ -26,10 +27,16 @@ def city_block(arr):
     return hasil
 
 
-arr = [[0,0,0,0,2],
-       [0,1,0,0,0],
-       [0,0,0,0,0],
-       [0,0,0,1,0],
+lis = [[0,0,0,0,0],
+       [0,0,1,0,0],
+       [0,1,0,1,0],
+       [0,0,1,0,0],
        [0,0,0,0,0],]
 
-print(city_block(arr))
+hasil = city_block(lis)
+print(hasil)
+
+f,(x,y) = plt.subplots(1,2)
+x.imshow(lis, 'gray')
+y.imshow(hasil, 'gray')
+plt.show()
